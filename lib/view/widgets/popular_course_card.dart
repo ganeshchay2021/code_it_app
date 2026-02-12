@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:counter_app/model/popular_course_model.dart';
 import 'package:flutter/material.dart';
 
@@ -35,11 +36,23 @@ class PopularCourseCard extends StatelessWidget {
                 borderRadius: const BorderRadius.vertical(
                   top: Radius.circular(8),
                 ),
-                child: Image.network(
-                  "${course.featured}",
-                  height: 130,
-                  width: double.infinity,
+                child: CachedNetworkImage(
+                  height: 150,
                   fit: BoxFit.cover,
+                  imageUrl: "${course.featured}",
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      Container(
+                        height: 150,
+                        width: double.infinity,
+                        decoration: BoxDecoration(color: Colors.grey.shade200),
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            value: downloadProgress.progress,
+                            color: Colors.red.shade300,
+                          ),
+                        ),
+                      ),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
               ),
               Positioned(
