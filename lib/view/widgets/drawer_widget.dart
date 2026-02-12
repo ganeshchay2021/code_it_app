@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:counter_app/controller/pricavy_and_policy_controller.dart';
 import 'package:counter_app/controller/terms_and_condition_controller.dart';
+import 'package:counter_app/view/privacy_and_policy_view.dart';
 import 'package:counter_app/view/terms_and_condition_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +12,8 @@ class DrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final termsAndConditionController = Get.find<TermsAndConditionController>();
+    final privacyAndPolicyController = Get.find<PricavyAndPolicyController>();
+
     return Drawer(
       backgroundColor: Colors.amber[50],
       child: Column(
@@ -54,7 +58,14 @@ class DrawerWidget extends StatelessWidget {
             text: "Terms and Conditions",
           ),
           CommonListTile(
-            onTap: () {},
+            onTap: () {
+              Get.back();
+              if (privacyAndPolicyController.privacyAndPolicy.value.data ==
+                  null) {
+                privacyAndPolicyController.getPrivacyAndPolicy();
+              }
+              Get.to(PrivacyAndPolicyView());
+            },
             icon: Icons.privacy_tip,
             text: "Privacy and Policy",
           ),

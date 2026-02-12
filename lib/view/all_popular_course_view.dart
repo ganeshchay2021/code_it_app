@@ -22,7 +22,7 @@ class AllPopularCourseView extends GetView<PopularCourseController> {
           crossAxisCount: 2,
           crossAxisSpacing: 15,
           mainAxisSpacing: 15,
-          childAspectRatio: 0.85,
+          childAspectRatio: 0.75,
         ),
         itemCount: controller.popularCourses.value.data.length,
         itemBuilder: (context, index) {

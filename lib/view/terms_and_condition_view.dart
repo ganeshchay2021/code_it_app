@@ -9,7 +9,9 @@ class TermsAndConditionView extends GetView<TermsAndConditionController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Terms and Condition")),
+      appBar: AppBar(
+        backgroundColor: Colors.amber,
+        title: Text("Terms and Condition")),
       body: Obx(() {
         if (controller.isLoading.isTrue) {
           return Center(child: CircularProgressIndicator.adaptive());
